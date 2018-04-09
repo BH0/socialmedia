@@ -6,17 +6,7 @@
 
 @section('content')
 
-	@if (count($errors) > 0) 
-	<div class="errors">
-		<b>Errors:</b> 
-		<ul> 
-			@foreach($errors->all() as $error) 
-				<li>{{$error}}</li> 
-			@endforeach
-		</ul> 
-	</div> 
-	@endif 
-	 
+	@include('includes.message') 	 
 	<form action="{{ route('signup') }}" method="post"> 
 		<input  type="email" name="email" value="{{ Request::old('email') }}" >
 		<input type="password" name="password" value="{{ Request::old('password') }}">

@@ -6,7 +6,7 @@
 @import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap'; 
 
 .navbar-laravel {
   background-color: #fff;
@@ -15,4 +15,12 @@
 
 .errors * {
     color: red;
+}
+.success * {
+    color: green;
+} 
+
+.user-image { 
+    width: 64px; 
+    height: 64px; 
 } 

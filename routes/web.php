@@ -11,41 +11,63 @@
 |
 */
 
+// Note: Route protection may not have been done correctly 
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('home'); 
+
 
 Route::post('/signup', [
     'uses' => 'UserController@postSignup',
     'as' => 'signup'
 ]);
 
+
 Route::post('/signin', [
     'uses' => 'UserController@postSignin',
     'as' => 'signin'
 ]);
 
-Route::get('/dashboard', [
-	'uses' => 'UserController@getDashboard', 
-	'as' => 'dashboard' 
+// this is here due to what appears to be a glithc 
+//Route::post('/login', [
+ //   'uses' => 'UserController@postSignin',
+ //   'as' => 'login'
+//]);
+
+Route::get('/signout', [
+	'uses' => 'UserController@getSignout', 
+	'as' => 'signout' 
 ]); 
 
-/* 
-Route::group(['middleware' => ['web']], function() {
-	
-	Route::get('/', function() {
-		return view('welcome'); 
-	}); 
+Route::get('/account', [
+	'uses' => 'UserController@getAccount', 
+	'as' => 'account'
+]); 
 
-	Route::post('/signup', [
-		'uses' => 'UserController@postSignup', 
-		'as' => 'signup'
-	]); 
+route::post('/updateAccount', [
+	'uses' => 'UserController@postUpdateAccount', 
+	'as' => 'account.update' 
+]); 
 
-	Route::get('/dashboard', [
-		'uses' => 'UserControlle@getDashboard', 
-		'as' => 'dashboard' 
-	]); 
-}); 
-*/ 
+Route::get('/userImage/{filename}', [ 
+	'uses' => 'UserController@getUserImage', 
+	'as' => 'account.image' 
+]); 
+
+Route::get('/dashboard', [
+	'uses' => 'PostController@getDashboard', 
+	'as' => 'dashboard',  
+	'middleware' => 'auth' 
+]); 
+
+Route::post('/post', [ 
+	'uses' => 'PostController@postCreatePost', 
+	'as' => 'post.create' 
+]); 
+
+Route::get('/post-delete/{post_id}', [
+	'uses' => 'PostController@getDeletePost', 
+	'as' => 'post.delete', 
+	'middleware' => 'auth' 
+]);  

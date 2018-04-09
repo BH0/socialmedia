@@ -9,8 +9,7 @@
     "\\resources",
     "\\resources\\assets",
     "\\resources\\assets\\sass",
-    "\\resources\\views",
-    "\\resources\\views\\layouts"
+    "\\resources\\views"
   ],
   "SelectedNode": "\\app\\Http\\Controllers\\UserController.php",
   "PreviewInSolutionExplorer": false
